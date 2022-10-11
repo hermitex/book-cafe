@@ -27,7 +27,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/users"
+            path="/"
             element={<User />}
           />
         </Routes>
