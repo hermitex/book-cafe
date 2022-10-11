@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import User from "./components/User";
 
 function App() {
@@ -24,14 +23,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <Router>
-        <Routes>
-          <Route
-            path="/users"
-            element={User}
-          />
-        </Routes>
-      </Router>
+      <User />
     </div>
   );
 }
