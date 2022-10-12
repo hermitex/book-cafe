@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     def render_invalid_record(invalid)
-      render json: invalid.record.errors, status: :unprocessable_entity
+      render json:{errors: invalid.record.errors}, status: :unprocessable_entity
     end
 
     def empty_body

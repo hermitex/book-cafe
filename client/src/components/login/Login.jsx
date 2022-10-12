@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import Copyright from "../Copyright/Copyright";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -21,9 +22,15 @@ const Login = () => {
     console.log(event);
     event.preventDefault();
     try {
-      const response = await fetch("/login");
-      const data = await response.json();
-      setUser(data);
+      const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Accept-Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const user = await response.json();
+      setUser(user);
       setData({ username: "", password: "" });
       console.log(user);
     } catch (error) {
@@ -74,15 +81,15 @@ const Login = () => {
                 </div>
 
                 <div className="signup">
-                  <small>
-                    Have no account?{" "}
+                  <small>Have no account? </small>
+                  <NavLink to="/signup">
                     <button
                       type="submit"
                       className="btn"
                     >
                       Sign Up
                     </button>
-                  </small>
+                  </NavLink>
                 </div>
               </form>
             </div>

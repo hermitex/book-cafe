@@ -61,7 +61,7 @@ button{
 }
 
 .btn-primary:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   color: black;
 }
 

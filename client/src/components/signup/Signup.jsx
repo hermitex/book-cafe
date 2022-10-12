@@ -1,54 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import Copyright from "../Copyright/Copyright";
 import "./Signup.css";
 
 const Signup = () => {
-  return (
-    <div className="main">
-    <div className="sub-main">
-      <div className="sign">
-        <h1>SIGN UP</h1>
-      </div>
-      <div className="signup">
-              <h2> Have an account?{" "}
-                <button type="button" className="btn">
-                    Login
-                </button>
-              </h2>
-            </div>
+  const [data, setData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    location: "",
+    password: "",
+  });
 
-            <div className="form">
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your username................"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter you email............"
-                required
-              />
-              <input
+  const [user, setUser] = useState(null);
+
+  const handleChange = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Accept-Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const user = await response.json();
+      setUser(user);
+
+      setData({
+        username: "",
+        email: "",
+        phone: "",
+        location: "",
+        password: "",
+      });
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div className="container">
+      <div className="inner-wrapper">
+        <div className="sign">
+          <h1>SIGN UP</h1>
+        </div>
+        <div className="signup">
+          <small> Have an account? </small>
+          <NavLink to="/login">
+            <button
+              type="button"
+              className="btn"
+            >
+              Login
+            </button>
+          </NavLink>
+        </div>
+
+        <div className="form">
+          <form onSubmit={handleSubmit}>
+            <input
               type="text"
-              name="name"
+              name="username"
+              placeholder="Enter your username................"
+              required
+              onChange={handleChange}
+              value={data.username}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter you email............"
+              required
+              onChange={handleChange}
+              value={data.email}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter you password............"
+              required
+              onChange={handleChange}
+              value={data.password}
+            />
+            <input
+              type="text"
+              name="location"
               placeholder="Nairobi..........."
               required
+              onChange={handleChange}
+              value={data.location}
             />
 
             <input
-              type="number"
+              type="tel"
               name="phone"
               placeholder="+254 123 456 789........."
               required
+              onChange={handleChange}
+              value={data.phone}
             />
-              <input
-                type="checkbox"
-                name="password"
-                placeholder="Remember Username..........."
-                required
-              />
-            </div>
 
             <div className="button">
               <button
@@ -58,22 +116,19 @@ const Signup = () => {
                 Submit
               </button>
             </div>
+          </form>
+        </div>
+        <div className="text">
+          <small>
+            Register your book and swap it with a new one or perhaps create a
+            new book lover. Participating in a book exchange also saves on ink
+            and leaves a smaller environmental footprint than printing a book.
+          </small>
+        </div>
 
-            <div className="text">
-                <p>Register your book and swap it with a new one
-                or perhaps create a new book lover. Participating in a
-                book exchange also saves on ink and leaves a smaller
-                environmental footprint than printing a book.</p>
-            </div>
-
-            <div className="copyright">
-            <small>
-              &copy; 2022 Nairobi <span> KENYA. </span> All rights reserved
-            </small>
-          </div>
-
+        <Copyright />
       </div>
-      </div>
+    </div>
   );
 };
 
