@@ -1,15 +1,36 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 
-function Home() {
+function Home({ loggedUser }) {
   let location = useLocation();
+  const navigate = useNavigate();
+
   const { state } = location;
-  const user = state;
+  const [user, setUser] = useState(state);
+
+  const handleLogout = () => {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(() => {
+      navigate("/login");
+      setUser(null);
+    });
+  };
+
   return (
     <div className="grid-cols-2">
       <div className="side left">
-        <Sidebar user={user} />
+        <Sidebar user={user || loggedUser} />
+        <div className="button">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
       </div>
       <div className="right">
         <div className="top">

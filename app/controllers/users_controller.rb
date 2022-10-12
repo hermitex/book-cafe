@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [ :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_record
   rescue_from ActionController::ParameterMissing, with: :empty_body
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: session[:user_id])
     if @user
-      render json: @user, include: [:book_exchanges], status: :ok
+      render json: @user, status: :ok
     else
       render json: {error: "Unauthorized"}, status: :unauthorized
     end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     end
 
     def record_not_found
-      render json: {error: "Book not found"}, status: :not_found
+      render json: {error: "Unauthorized"}, status: :unauthorized
     end
 
     def render_invalid_record(invalid)
