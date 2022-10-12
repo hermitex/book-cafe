@@ -26,22 +26,22 @@ const Signup = () => {
       const response = await fetch("/signup", {
         method: "POST",
         headers: {
-          "Accept-Content-Type": "application/json",
+          "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify(data),
       });
-
-      const user = await response.json();
-      setUser(user);
-
-      setData({
-        username: "",
-        email: "",
-        phone: "",
-        location: "",
-        password: "",
-      });
-      console.log(user);
+      if (response.ok) {
+        const user = await response.json();
+        setUser(user);
+        setData({
+          username: "",
+          email: "",
+          phone: "",
+          location: "",
+          password: "",
+        });
+        console.log(user);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -11,6 +11,11 @@ function App() {
       <Router>
         <Routes>
           <Route
+            path="/"
+            index
+            element={<Login />}
+          />
+          <Route
             path="/login"
             element={<Login />}
           />

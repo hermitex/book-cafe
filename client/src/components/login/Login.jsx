@@ -11,6 +11,7 @@ const Login = () => {
   });
 
   const [user, setUser] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
     const { name } = event.target;
@@ -19,20 +20,24 @@ const Login = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
     event.preventDefault();
+    console.log(JSON.stringify(data));
     try {
       const response = await fetch("/login", {
         method: "POST",
         headers: {
-          "Accept-Content-Type": "application/json",
+          "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify(data),
       });
-      const user = await response.json();
-      setUser(user);
-      setData({ username: "", password: "" });
-      console.log(user);
+      if (response.ok) {
+        const user = await response.json();
+        setUser(user);
+        setData({ username: "", password: "" });
+        console.log(user);
+      } else {
+        setErrors(response);
+      }
     } catch (error) {
       console.log(error);
     }

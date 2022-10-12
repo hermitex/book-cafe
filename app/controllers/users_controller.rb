@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    byebug
     @user = User.find_by(id: session[:user_id])
     if @user
       render json: @user, include: [:book_exchanges], status: :ok
