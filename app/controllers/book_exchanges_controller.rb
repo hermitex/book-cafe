@@ -19,9 +19,9 @@ class BookExchangesController < ApplicationController
       @book_exchange = BookExchange.new(book_exchange_params)
       if @book_exchange.save!
         render json: {
-          "book_to_receive": book_to_receive, except: [:created_at, :updated_at],
-          "book_to_send": book_to_send, except: [:created_at, :updated_at], except: [:created_at, :updated_at],
-          "receiver": receiver, except: [:created_at, :updated_at],
+          "book_to_receive": book_to_receive,
+          "book_to_send": book_to_send,
+          "receiver": receiver,
           "sender": sender, except: [:created_at, :updated_at]
         }, status: :created, location: @book_exchange
       else
