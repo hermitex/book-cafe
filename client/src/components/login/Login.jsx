@@ -1,6 +1,6 @@
 import React from "react";
-import "./login.css";
-import LOGO from "../../assets/login.png";
+import "./Login.css";
+import logo from "../../assets/login.png";
 
 const Login = () => {
   return (
@@ -10,7 +10,7 @@ const Login = () => {
           <div className="dash">
             <h1>BOOK CAFE</h1>
             <img
-              src={LOGO}
+              src={logo}
               alt="logo"
             />
 
@@ -49,8 +49,7 @@ const Login = () => {
                 Have no account?{" "}
                 <button
                   type="button"
-                  class="btn"
-                  onclick="openSignUp()"
+                  className="btn"
                 >
                   Sign Up
                 </button>
