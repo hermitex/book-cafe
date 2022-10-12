@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import Copyright from "../Copyright/Copyright";
 import { NavLink } from "react-router-dom";
+import Alert from "../alert/Alert";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -12,6 +14,7 @@ const Login = () => {
 
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name } = event.target;
@@ -34,7 +37,8 @@ const Login = () => {
         const user = await response.json();
         setUser(user);
         setData({ username: "", password: "" });
-        console.log(user);
+
+        navigate("/home", { state: user });
       } else {
         setErrors(response);
       }
@@ -48,7 +52,8 @@ const Login = () => {
       <div className="sub-main">
         <div className="login">
           <div className="dash">
-            <h1 className="login-title">BOOK CAFE</h1>
+            <Alert />
+            <h1 className="login-title underline">BOOK CAFE</h1>
             <div className="logo">
               <img
                 width="100%"
