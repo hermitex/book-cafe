@@ -1,0 +1,130 @@
+body {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.main {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 90px;
+    padding-bottom: 90px;
+    background-color: #e1e3eb;
+  }
+
+  .sub-main {
+    display: flex;
+    justify-content: center;
+    height: 850px;
+    width: 45%;
+    box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
+    padding-top: 30px;
+    border-radius: 60px;
+    background-color: white;
+
+  }
+.dash h1 {
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-left: 100px;
+}
+
+.button {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: rgb(73, 180, 230);
+    color: black;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    border: 6px solid transparent;
+    font-weight: bold;
+    padding: 10px 55px;
+    border-radius: 30px;
+    transition: transform .4s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.2);
+    color: black;
+}
+
+.btn:hover {
+background: #0d5f0d;
+color: black;
+border-color: transparent;
+transform: scale(1.2);
+}
+
+input {
+    margin-top: 1rem;
+    text-align: center;
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    background: rgb(230, 230, 230);
+    font-size: 1rem;
+    text-align: left;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.signup h2 {
+    font-style: italic;
+}
+
+.signup span {
+    color: #0d5f0d;
+    font-style: normal;
+    text-decoration: line-through;
+}
+
+.signup button {
+    background-color: rgb(13, 112, 71);
+    color: black;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    border: 6px solid transparent;
+    font-weight: bold;
+    padding: 0.3px 12px;
+    border-radius: 30px;
+    transition: transform .4s;
+}
+
+
+.copyright {
+    margin-top:  8rem;
+    color: black;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.copyright span {
+    color: rgb(7, 100, 7);
+    font-style: italic;
+
+}
+
+@media screen and (max-width: 1024px) {
+    .phone {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .phone {
+            width:  var(--container-width-sm);
+    }
+}
