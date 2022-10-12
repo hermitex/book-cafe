@@ -6,7 +6,6 @@ function Home() {
   let location = useLocation();
   const { state } = location;
   const user = state;
-  console.log(user);
   return (
     <div className="grid-cols-2">
       <div className="side left">

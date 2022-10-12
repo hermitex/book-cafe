@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Copyright from "../Copyright/Copyright";
 import "./Signup.css";
@@ -13,6 +14,7 @@ const Signup = () => {
   });
 
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name } = event.target;
@@ -33,6 +35,7 @@ const Signup = () => {
       if (response.ok) {
         const user = await response.json();
         setUser(user);
+        navigate("/home", { state: user });
         setData({
           username: "",
           email: "",
