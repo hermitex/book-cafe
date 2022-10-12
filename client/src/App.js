@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/login";
+import Signup from "./components/Signup/signup";
 // import User from "./components/User";
 
 function App() {
@@ -12,6 +13,10 @@ function App() {
           <Route
             path="/login"
             element={<Login />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup />}
           />
         </Routes>
       </Router>
