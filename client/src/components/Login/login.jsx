@@ -2,10 +2,6 @@ import React from "react";
 import "./login.css"
 import LOGO from "../../assets/login.png"
 
-
-
-
-
 const Login = ( ) => {
     return (
         <div className="main">
