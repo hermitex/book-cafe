@@ -8,8 +8,12 @@ function Blank() {
         style={{
           backgroundColor: "gray",
           height: "15vh",
-          width: "90vw",
+          width: "90%",
           marginBottom: "1rem",
+          padding: "0.5rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <p>Ooop! Seems we don't have any books yet.</p>
