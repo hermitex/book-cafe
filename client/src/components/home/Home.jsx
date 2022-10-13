@@ -30,17 +30,13 @@ function Home({ loggedUser }) {
           user={user || loggedUser}
           logout={handleLogout}
         />
-        <div className="button">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
       </div>
-      <div className="widget right">
+      <div
+        className="widget right"
+        style={{
+          width: "85vw",
+        }}
+      >
         <div className="right-top">
           <Widget
             user={user}

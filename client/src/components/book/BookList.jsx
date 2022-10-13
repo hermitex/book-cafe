@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 import "./book.css";
+import Blank from "../blank/Blank";
 
 function BookList() {
   const [books, setBooks] = useState(null);
@@ -25,13 +26,17 @@ function BookList() {
 
   return (
     <div className="book-list">
-      {books &&
+      {books && books.length === 0 ? (
+        <Blank />
+      ) : (
+        books &&
         books.map((book) => (
           <BookCard
             key={book.id}
             book={book}
           />
-        ))}
+        ))
+      )}
     </div>
   );
 }

@@ -84,6 +84,7 @@ function Sidebar({ user, logout }) {
       <div className="bottom">
         <button
           className="btn-primary"
+          style={{ padding: "0.2rem 1.5rem", fontSize: "1rem" }}
           onClick={logout}
         >
           Logout
