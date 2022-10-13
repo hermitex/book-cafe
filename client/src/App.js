@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BookDetails from "./components/book/BookDetails";
-import MyBook from "./components/book/MyBook";
+import MyBookList from "./components/book/MyBookList";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import NewBook from "./components/new/NewBook";
@@ -37,21 +37,25 @@ function App() {
             path="/signup"
             element={<Signup />}
           />
+
           <Route
             path="/home"
             element={<Home loggedUser={user} />}
           />
-          <Route
-            path="/book-details"
-            element={<BookDetails />}
-          />
+
           <Route
             path="/new-books"
             element={<NewBook />}
           />
+
+          <Route
+            path="/book-details"
+            element={<BookDetails />}
+          />
+
           <Route
             path="/my-books"
-            element={<MyBook />}
+            element={<MyBookList />}
           />
         </Routes>
       </Router>

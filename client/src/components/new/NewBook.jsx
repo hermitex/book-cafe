@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Copyright from "../Copyright/Copyright";
+import Sidebar from "../sidebar/Sidebar";
+import useUserAuth from "../utils/useUserAuth";
 import "./Signup.css";
 
 const NewBook = () => {
+  const [user, endSession] = useUserAuth();
   const [data, setData] = useState({
-    username: "",
-    email: "",
-    phone: "",
-    location: "",
-    password: "",
+    user_id: user && user.id,
+    title: "",
+    category: "",
+    cover_image: "",
+    author: "",
+    condition: "",
+    is_available: true,
   });
 
-  const [user, setUser] = useState(null);
+  const [book, setBook] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -25,7 +30,7 @@ const NewBook = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/signup", {
+      const response = await fetch("/books", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -33,15 +38,17 @@ const NewBook = () => {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        const user = await response.json();
-        setUser(user);
-        navigate("/home", { state: user });
+        const book = await response.json();
+        setBook(book);
+        navigate("/book-details", { state: book });
         setData({
-          username: "",
-          email: "",
-          phone: "",
-          location: "",
-          password: "",
+          user_id: "",
+          title: "",
+          category: "",
+          cover_image: "",
+          author: "",
+          condition: "",
+          is_available: "",
         });
         console.log(user);
       }
@@ -50,87 +57,123 @@ const NewBook = () => {
     }
   };
   return (
-    <div className="container">
-      <div className="inner-wrapper">
-        <div className="sign">
-          <h1>SIGN UP</h1>
-        </div>
-        <div className="signup">
-          <small> Have an account? </small>
-          <NavLink to="/login">
-            <button
-              type="button"
-              className="btn"
-            >
-              Login
-            </button>
-          </NavLink>
-        </div>
+    <div className="home-flex">
+      <div className="side left">
+        <Sidebar
+          user={user}
+          logout={endSession}
+        />
+      </div>
+      <div
+        className="widget right"
+        style={{
+          width: "85vw",
+        }}
+      >
+        <div className="inner-wrapper">
+          <div className="sign">
+            <h1>Add Book</h1>
+          </div>
 
-        <div className="form">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter your username................"
-              required
-              onChange={handleChange}
-              value={data.username}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter you email............"
-              required
-              onChange={handleChange}
-              value={data.email}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter you password............"
-              required
-              onChange={handleChange}
-              value={data.password}
-            />
-            <input
-              type="text"
-              name="location"
-              placeholder="Nairobi..........."
-              required
-              onChange={handleChange}
-              value={data.location}
-            />
+          <div className="form">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="title"
+                placeholder="Enter book title................"
+                required
+                onChange={handleChange}
+                value={data.title}
+              />
 
-            <input
-              type="tel"
-              name="phone"
-              placeholder="+254 123 456 789........."
-              required
-              onChange={handleChange}
-              value={data.phone}
-            />
-
-            <div className="button">
-              <button
-                type="submit"
-                className="btn btn-primary"
+              <select
+                name="category"
+                id=""
               >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="text bg-red-900">
-          <small>
-            Register your book and swap it with a new one or perhaps create a
-            new book lover. <br></br>Participating in a book exchange also saves
-            on ink and leaves a smaller environmental footprint than printing a
-            book.
-          </small>
-        </div>
+                <option
+                  value=""
+                  disabled
+                >
+                  Select Category
+                </option>
+                <option value="Fiction">Fiction</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Dystopian">Dystopian</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Romance">Romance</option>
+              </select>
+              <input
+                type="url"
+                name="cover_image"
+                placeholder="Enter book cover............"
+                required
+                onChange={handleChange}
+                value={data.cover_image}
+              />
+              <input
+                type="text"
+                name="author"
+                placeholder="Enter author name..........."
+                required
+                onChange={handleChange}
+                value={data.author}
+              />
+              <select
+                name="condition"
+                id=""
+              >
+                <option
+                  value=""
+                  disabled
+                >
+                  Select Condition
+                </option>
+                <option value="New">New</option>
+                <option value="Used">Used</option>
+                <option value="Old">Old</option>
+              </select>
+              <div className="">
+                <label for="yes">Yes</label>
+                <input
+                  type="radio"
+                  id="yes"
+                  name="is_available"
+                  value={data.is_available}
+                  onChange={handleChange}
+                />
+                <label for="no">No</label>
+                <br />
+                <input
+                  type="radio"
+                  id="no"
+                  name="is_available"
+                  value={data.is_available}
+                  onChange={handleChange}
+                />
+              </div>
 
-        <Copyright />
+              <div className="button">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="text bg-red-900">
+            <small>
+              Register your book and swap it with a new one or perhaps create a
+              new book lover. <br></br>Participating in a book exchange also
+              saves on ink and leaves a smaller environmental footprint than
+              printing a book.
+            </small>
+          </div>
+
+          <Copyright />
+        </div>
       </div>
     </div>
   );

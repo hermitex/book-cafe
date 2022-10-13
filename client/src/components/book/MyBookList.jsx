@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import Blank from "../blank/Blank";
 import Sidebar from "../sidebar/Sidebar";
 import Widget from "../widget/Widget";
+import BookCard from "./BookCard";
 import "./home.css";
 
-import BookList from "../book/BookList";
-
-function MyBook({ loggedUser }) {
+function MyBookList({ loggedUser }) {
   let location = useLocation();
   const navigate = useNavigate();
 
   const { state } = location;
   const [user, setUser] = useState(state);
+
+  const [books, setBooks] = useState(null);
+  const [errors, setErrors] = useState(null);
+  useEffect(() => {
+    async function getBooks() {
+      try {
+        const response = await fetch(`/users/${user.id}/books`);
+        const data = await response.json();
+        if (response.ok) {
+          console.log(data);
+          setBooks(data);
+        } else {
+          setErrors(data.error);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getBooks();
+  }, []);
 
   const handleLogout = () => {
     fetch("/logout", {
@@ -63,7 +84,19 @@ function MyBook({ loggedUser }) {
               </NavLink>
             </div>
 
-            <BookList />
+            <div className="book-list">
+              {books && books.length === 0 ? (
+                <Blank />
+              ) : (
+                books &&
+                books.map((book) => (
+                  <BookCard
+                    key={book.id}
+                    book={book}
+                  />
+                ))
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -71,4 +104,4 @@ function MyBook({ loggedUser }) {
   );
 }
 
-export default MyBook;
+export default MyBookList;
