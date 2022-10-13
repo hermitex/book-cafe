@@ -111,14 +111,4 @@ input {
   transition: transform 0.4s;
 }
 
-.copyright {
-  color: black;
-  font-size: 1rem;
-  font-weight: bolder;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.copyright span {
-  color: rgb(7, 100, 7);
-  font-style: italic;
-}
+

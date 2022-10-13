@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
+import Widget from "../widget/Widget";
+import "./home.css";
+
+import allIcon from "./assets/all.png";
 
 function Home({ loggedUser }) {
   let location = useLocation();
@@ -19,9 +23,12 @@ function Home({ loggedUser }) {
   };
 
   return (
-    <div className="grid-cols-2">
+    <div className="home-flex">
       <div className="side left">
-        <Sidebar user={user || loggedUser} />
+        <Sidebar
+          user={user || loggedUser}
+          logout={handleLogout}
+        />
         <div className="button">
           <button
             type="button"
@@ -32,12 +39,25 @@ function Home({ loggedUser }) {
           </button>
         </div>
       </div>
-      <div className="right">
-        <div className="top">
-          <div className="card">All books</div>
-          <div className="card">Viewed books</div>
-          <div className="card">Pending Exchanges</div>
-        </div>
+      <div className="widget right">
+        <Widget
+          user={user}
+          icon={allIcon}
+          data={user.books.length}
+          text="Available Books"
+        />
+        <Widget
+          user={user}
+          icon={allIcon}
+          data={user.books.length}
+          text="Viewed Books"
+        />
+        <Widget
+          user={user}
+          icon={allIcon}
+          data={user.books.length}
+          text="Pending Books"
+        />
       </div>
     </div>
   );

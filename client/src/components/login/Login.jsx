@@ -12,11 +12,12 @@ const Login = () => {
     password: "",
   });
 
-  const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(null);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
+    setErrors(null);
     const { name } = event.target;
     const { value } = event.target;
     setData({ ...data, [name]: value });
@@ -24,7 +25,6 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(data));
     try {
       const response = await fetch("/login", {
         method: "POST",
@@ -33,14 +33,15 @@ const Login = () => {
         },
         body: JSON.stringify(data),
       });
+      const user = await response.json();
       if (response.ok) {
-        const user = await response.json();
-        setUser(user);
+        setSuccess("Logged in successfully!");
         setData({ username: "", password: "" });
-
-        navigate("/home", { state: user });
+        setTimeout(() => {
+          navigate("/home", { state: user });
+        }, 2000);
       } else {
-        setErrors(response);
+        setErrors(user);
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +53,30 @@ const Login = () => {
       <div className="sub-main">
         <div className="login">
           <div className="dash">
-            <Alert />
+            {errors !== null ? (
+              <div
+                style={{
+                  color: "orange",
+                  padding: "0.1rem",
+                  margin: "1rem 0",
+                }}
+              >
+                {errors.error}
+              </div>
+            ) : null}
+
+            {success !== null ? (
+              <div
+                style={{
+                  color: "green",
+                  padding: "0.1rem",
+                  margin: "1rem 0",
+                }}
+              >
+                {success}
+              </div>
+            ) : null}
+
             <h1 className="login-title underline">BOOK CAFE</h1>
             <div className="logo">
               <img

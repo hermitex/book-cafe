@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./copyright.css";
 function Copyright() {
   return (
     <div className="copyright">

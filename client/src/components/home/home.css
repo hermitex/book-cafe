@@ -1,0 +1,13 @@
+.home-flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.widget.right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
