@@ -124,7 +124,7 @@ const Signup = () => {
         <div className="text bg-red-900">
           <small>
             Register your book and swap it with a new one or perhaps create a
-            new book lover. Participating in a book exchange also saves on ink
+            new book lover. <br></br>Participating in a book exchange also saves on ink
             and leaves a smaller environmental footprint than printing a book.
           </small>
         </div>
