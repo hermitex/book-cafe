@@ -66,10 +66,10 @@ function Sidebar({ user, logout }) {
                   <NavLink to="">Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">Categories</NavLink>
+                  <NavLink to="">Exchanges</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">Library</NavLink>
+                  <NavLink to="">My Books</NavLink>
                 </li>
               </div>
               <div className="bottom">

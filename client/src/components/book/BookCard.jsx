@@ -21,12 +21,14 @@ function BookCard({ book }) {
           gutterBottom
           variant="h5"
           component="div"
+          style={{ textAlign: "left" }}
         >
           {book.title}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
+          style={{ textAlign: "left" }}
         >
           Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica
