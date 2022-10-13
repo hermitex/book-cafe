@@ -14,16 +14,16 @@ function Sidebar({ user, logout }) {
         flexDirection: "column",
         justifyContent: "space-between",
         paddingBottom: "1rem",
+        position: "fixed",
       }}
     >
       <div className="top">
         <div className="title">
-          <h1>BOOK CAFE</h1>
+          <h1> Hi, {user.username}!</h1>
         </div>
 
         <nav>
           <label for="touch">
-            {/* <small>Welcome, {user.username}!</small> */}
             <span className="sidebar-span">
               <div
                 className="avatar-container"
@@ -41,7 +41,7 @@ function Sidebar({ user, logout }) {
                     height: "100%",
                   }}
                   src=""
-                  alt={user.username}
+                  alt={user.username.split("")[0].toUpperCase()}
                 />
               </div>{" "}
             </span>

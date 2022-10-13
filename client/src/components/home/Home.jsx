@@ -5,6 +5,7 @@ import Widget from "../widget/Widget";
 import "./home.css";
 
 import allIcon from "./assets/all.png";
+import BookList from "../book/BookList";
 
 function Home({ loggedUser }) {
   let location = useLocation();
@@ -40,24 +41,32 @@ function Home({ loggedUser }) {
         </div>
       </div>
       <div className="widget right">
-        <Widget
-          user={user}
-          icon={allIcon}
-          data={user.books.length}
-          text="Available Books"
-        />
-        <Widget
-          user={user}
-          icon={allIcon}
-          data={user.books.length}
-          text="Viewed Books"
-        />
-        <Widget
-          user={user}
-          icon={allIcon}
-          data={user.books.length}
-          text="Pending Books"
-        />
+        <div className="right-top">
+          <Widget
+            user={user}
+            icon={allIcon}
+            data={user.books.length}
+            text="Available Books"
+          />
+          <Widget
+            user={user}
+            icon={allIcon}
+            data={user.books.length}
+            text="Viewed Books"
+          />
+          <Widget
+            user={user}
+            icon={allIcon}
+            data={user.books.length}
+            text="Pending Books"
+          />
+        </div>
+        <div
+          className="right-bottom"
+          style={{ padding: "1rem 2rem" }}
+        >
+          <BookList />
+        </div>
       </div>
     </div>
   );
