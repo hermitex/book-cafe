@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Blank() {
   return (
@@ -19,12 +20,14 @@ function Blank() {
         <p>Ooop! Seems we don't have any books yet.</p>
       </div>
       <div className="button">
-        <button
-          type="button"
-          className="btn btn-primary"
-        >
-          Add Book
-        </button>
+        <NavLink to="/new-book">
+          <button
+            type="button"
+            className="btn btn-primary"
+          >
+            Add Book
+          </button>
+        </NavLink>
       </div>
     </div>
   );

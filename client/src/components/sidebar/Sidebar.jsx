@@ -69,7 +69,12 @@ function Sidebar({ user, logout }) {
                   <NavLink to="">Exchanges</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">My Books</NavLink>
+                  <NavLink
+                    to={{ pathname: "/my-books" }}
+                    state={user}
+                  >
+                    My Books
+                  </NavLink>
                 </li>
               </div>
               <div className="bottom">

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BookDetails from "./components/book/BookDetails";
+import MyBook from "./components/book/MyBook";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
+import NewBook from "./components/new/NewBook";
 import Signup from "./components/signup/Signup";
 // import User from "./components/User";
 
@@ -42,6 +44,14 @@ function App() {
           <Route
             path="/book-details"
             element={<BookDetails />}
+          />
+          <Route
+            path="/new-books"
+            element={<NewBook />}
+          />
+          <Route
+            path="/my-books"
+            element={<MyBook />}
           />
         </Routes>
       </Router>

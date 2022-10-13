@@ -4,10 +4,9 @@ import Sidebar from "../sidebar/Sidebar";
 import Widget from "../widget/Widget";
 import "./home.css";
 
-import allIcon from "./assets/all.png";
 import BookList from "../book/BookList";
 
-function Home({ loggedUser }) {
+function MyBook({ loggedUser }) {
   let location = useLocation();
   const navigate = useNavigate();
 
@@ -25,15 +24,6 @@ function Home({ loggedUser }) {
 
   return (
     <div className="wrapper">
-      {/* <NavLink to="/new-book">
-        <button
-          className="btn-primary"
-          style={{ padding: "0.2rem 1.5rem", fontSize: "1rem" }}
-        >
-          Add Book
-        </button>
-      </NavLink> */}
-
       <div className="home-flex">
         <div className="side left">
           <Sidebar
@@ -47,30 +37,32 @@ function Home({ loggedUser }) {
             width: "85vw",
           }}
         >
-          <div className="right-top">
-            <Widget
-              user={user}
-              icon={allIcon}
-              data={user.books.length}
-              text="Available Books"
-            />
-            <Widget
-              user={user}
-              icon={allIcon}
-              data={user.books.length}
-              text="Viewed Books"
-            />
-            <Widget
-              user={user}
-              icon={allIcon}
-              data={user.books.length}
-              text="Pending Books"
-            />
-          </div>
           <div
             className="right-bottom"
-            style={{ padding: "1rem 2rem" }}
+            style={{ padding: "0.5rem 2rem" }}
           >
+            <div
+              className="my-books-title"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                backgroundColor: "#2d2f31",
+                padding: "1rem 0.5rem",
+                marginBottom: "0.5rem",
+              }}
+            >
+              <h1 style={{ color: "#fff" }}>My Books</h1>
+              <NavLink to="/new-book">
+                <button
+                  className="btn-primary"
+                  style={{ padding: "0.2rem 1.5rem", fontSize: "1rem" }}
+                >
+                  Add Book
+                </button>
+              </NavLink>
+            </div>
+
             <BookList />
           </div>
         </div>
@@ -79,4 +71,4 @@ function Home({ loggedUser }) {
   );
 }
 
-export default Home;
+export default MyBook;
