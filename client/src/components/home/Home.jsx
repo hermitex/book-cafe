@@ -60,6 +60,7 @@ function Home({ loggedUser }) {
             data={user.books.length}
             text="Pending Books"
           />
+          <Link to="home/new">Add Book<Link/>
         </div>
         <div
           className="right-bottom"
