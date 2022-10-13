@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { NavLink } from "react-router-dom";
 
 function BookCard({ book }) {
   return (
@@ -35,8 +36,19 @@ function BookCard({ book }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <NavLink
+          to={{ pathname: "/book-details" }}
+          state={{ book }}
+        >
+          <Button size="small"> Exchange</Button>
+        </NavLink>
+
+        <NavLink
+          to={{ pathname: "/book-details" }}
+          state={{ book }}
+        >
+          <Button size="small">Learn More</Button>
+        </NavLink>
       </CardActions>
     </Card>
   );
