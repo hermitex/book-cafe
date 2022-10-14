@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import Widget from "../widget/Widget";
 import "./home.css";
 
 import allIcon from "./assets/all.png";
 import BookList from "../book/BookList";
+import useFetch from "../hooks/useFetch";
 
 function Home({ loggedUser }) {
   let location = useLocation();
@@ -13,6 +14,7 @@ function Home({ loggedUser }) {
 
   const { state } = location;
   const [user, setUser] = useState(state);
+  const [books, setBooks] = useFetch();
 
   const handleLogout = () => {
     fetch("/logout", {
@@ -25,15 +27,6 @@ function Home({ loggedUser }) {
 
   return (
     <div className="wrapper">
-      {/* <NavLink to="/new-book">
-        <button
-          className="btn-primary"
-          style={{ padding: "0.2rem 1.5rem", fontSize: "1rem" }}
-        >
-          Add Book
-        </button>
-      </NavLink> */}
-
       <div className="home-flex">
         <div className="side left">
           <Sidebar
@@ -51,19 +44,19 @@ function Home({ loggedUser }) {
             <Widget
               user={user}
               icon={allIcon}
-              data={user.books.length}
+              data={books && books.length}
               text="Available Books"
             />
             <Widget
               user={user}
               icon={allIcon}
-              data={user.books.length}
+              data={user && user.books.length}
               text="Viewed Books"
             />
             <Widget
               user={user}
               icon={allIcon}
-              data={user.books.length}
+              data={user && user.books.length}
               text="Pending Books"
             />
           </div>

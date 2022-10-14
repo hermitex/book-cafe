@@ -12,7 +12,8 @@ const Signup = () => {
     location: "",
     password: "",
   });
-
+  const [errors, setErrors] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -32,10 +33,12 @@ const Signup = () => {
         },
         body: JSON.stringify(data),
       });
+
+      const user = await response.json();
+
       if (response.ok) {
-        const user = await response.json();
         setUser(user);
-        navigate("/home", { state: user });
+        setSuccess("Signup is successfull!");
         setData({
           username: "",
           email: "",
@@ -43,8 +46,13 @@ const Signup = () => {
           location: "",
           password: "",
         });
-        console.log(user);
+        setTimeout(() => {
+          navigate("/home", { state: user });
+        }, 2000);
+      } else {
+        setErrors(user);
       }
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +61,33 @@ const Signup = () => {
     <div className="container">
       <div className="inner-wrapper">
         <div className="sign">
+          {errors !== null ? (
+            <div
+              style={{
+                color: "orange",
+                padding: "0.1rem",
+                margin: "1rem 0",
+              }}
+            >
+              <ul>
+                {errors.errors.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {success !== null ? (
+            <div
+              style={{
+                color: "green",
+                padding: "0.1rem",
+                margin: "1rem 0",
+              }}
+            >
+              {success}
+            </div>
+          ) : null}
           <h1>SIGN UP</h1>
         </div>
         <div className="signup">
@@ -124,8 +159,9 @@ const Signup = () => {
         <div className="text bg-red-900">
           <small>
             Register your book and swap it with a new one or perhaps create a
-            new book lover. <br></br>Participating in a book exchange also saves on ink
-            and leaves a smaller environmental footprint than printing a book.
+            new book lover. <br></br>Participating in a book exchange also saves
+            on ink and leaves a smaller environmental footprint than printing a
+            book.
           </small>
         </div>
 

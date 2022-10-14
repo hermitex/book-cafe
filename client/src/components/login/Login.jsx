@@ -4,7 +4,6 @@ import "./Login.css";
 import logo from "../../assets/logo.png";
 import Copyright from "../Copyright/Copyright";
 import { NavLink } from "react-router-dom";
-import Alert from "../alert/Alert";
 
 const Login = () => {
   const [data, setData] = useState({

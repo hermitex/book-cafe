@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
 function Sidebar({ user, logout }) {
-  console.log(user);
+  function handleClick(e) {
+    console.log(e);
+  }
   return (
     <div
       style={{
@@ -19,7 +21,7 @@ function Sidebar({ user, logout }) {
     >
       <div className="top">
         <div className="title">
-          <h1> Hi, {user.username}!</h1>
+          <h1> Hi, {user && user.username}!</h1>
         </div>
 
         <nav>
@@ -41,7 +43,7 @@ function Sidebar({ user, logout }) {
                     height: "100%",
                   }}
                   src=""
-                  alt={user.username.split("")[0].toUpperCase()}
+                  alt={user && user.username.split("")[0].toUpperCase()}
                 />
               </div>{" "}
             </span>
@@ -63,7 +65,7 @@ function Sidebar({ user, logout }) {
             >
               <div className="top">
                 <li>
-                  <NavLink to="">Dashboard</NavLink>
+                  <NavLink to="/home">Dashboard</NavLink>
                 </li>
                 <li>
                   <NavLink to="">Exchanges</NavLink>

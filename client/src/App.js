@@ -44,8 +44,8 @@ function App() {
           />
 
           <Route
-            path="/new-books"
-            element={<NewBook />}
+            path="/new-book"
+            element={<NewBook loggedUser={user} />}
           />
 
           <Route

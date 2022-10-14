@@ -21,7 +21,7 @@ function Widget({ user, text, icon, data }) {
             width: "3vw",
           }}
           src={icon}
-          alt={user.username}
+          alt={user && user.username}
         />
       </div>
       <div className="bottom">

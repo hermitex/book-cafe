@@ -1,12 +1,12 @@
-import { flexbox, padding } from "@mui/system";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 function BookDetails() {
   const location = useLocation();
   const { state } = location;
-  const { book } = state;
-  console.log(location);
+  let { book } = state;
+  book === null ? (book = state) : (book = book);
+  console.log(book);
   return (
     <div className="wrapper">
       <div
@@ -261,84 +261,6 @@ function BookDetails() {
       >
         <div className="h1">Reviews</div>
         <p>The book has {book.reviews.length} reviews</p>
-        <div
-          style={{
-            width: "100%",
-            backgroundColor: "grey",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            gap: "2rem",
-            minHeight: "40vh",
-            borderRadius: "1rem",
-            padding: "3rem",
-          }}
-        >
-          <div className="left">
-            <h1>Recent Reviews</h1>
-            <div
-              className="card"
-              style={{
-                width: "50vw",
-                backgroundColor: "white",
-                borderRadius: "1rem",
-                textAlign: "left",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                padding: "1rem",
-              }}
-            >
-              <div
-                className="avatar-container"
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  backgroundColor: "grey",
-                  borderRadius: "100%",
-                  textAlign: "center",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "2rem",
-                }}
-              >
-                <img
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  src=""
-                  alt={book.user.username.split("")[0].toUpperCase()}
-                />
-                <small>{book.user.username}</small>
-              </div>
-              <div className="review">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Rerum, deserunt dolorum? Incidunt nam voluptatem earum.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="right">
-            <h1>Add Review</h1>
-            <form action="">
-              <textarea
-                name="review"
-                id=""
-                cols="30"
-                rows="10"
-              ></textarea>
-              <button
-                className="btn-primary"
-                style={{ fontSize: "1rem", padding: "0.7rem" }}
-              >
-                <a href={`mailto: ${book.user.email}`}>Send Email</a>
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
     </div>
   );

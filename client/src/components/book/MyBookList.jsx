@@ -13,27 +13,6 @@ function MyBookList({ loggedUser }) {
   const { state } = location;
   const [user, setUser] = useState(state);
 
-  const [books, setBooks] = useState(null);
-  const [errors, setErrors] = useState(null);
-  useEffect(() => {
-    async function getBooks() {
-      try {
-        const response = await fetch(`/users/${user.id}/books`);
-        const data = await response.json();
-        if (response.ok) {
-          console.log(data);
-          setBooks(data);
-        } else {
-          setErrors(data.error);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getBooks();
-  }, []);
-
   const handleLogout = () => {
     fetch("/logout", {
       method: "DELETE",
@@ -85,11 +64,11 @@ function MyBookList({ loggedUser }) {
             </div>
 
             <div className="book-list">
-              {books && books.length === 0 ? (
+              {user && user.books.length === 0 ? (
                 <Blank />
               ) : (
-                books &&
-                books.map((book) => (
+                user &&
+                user.books.map((book) => (
                   <BookCard
                     key={book.id}
                     book={book}
