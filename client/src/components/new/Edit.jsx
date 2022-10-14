@@ -9,7 +9,6 @@ import "./Signup.css";
 const NewBook = ({ loggedUser }) => {
   const [errors, setErrors] = useState(null);
   const [success, setSuccess] = useState(null);
-  const navigate = useNavigate();
   const [user, endSession] = useUserAuth();
   const [activeUser, setActiveUser] = useState();
   const [data, setData] = useState({
@@ -23,6 +22,7 @@ const NewBook = ({ loggedUser }) => {
   });
 
   const [book, setBook] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/me").then((response) => {
