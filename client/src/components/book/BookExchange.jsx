@@ -109,7 +109,6 @@ function BookExchange({ loggedUser }) {
             flexDirection: "row",
             padding: "2rem 5rem",
             alignItems: "center",
-            gap: "5rem",
           }}
         >
           <div className="left">
