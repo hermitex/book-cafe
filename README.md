@@ -2,6 +2,9 @@
 
 Book Cafe is a book exchange platform that allows book lovers to share books. Users are able to signup, and login. Once logged in, a user can view, upload, edit, delete and offer books for exchange with other users.
 
+## Live Link
+[Book Cafe](https://mybookcafe.herokuapp.com/)
+
 ## Users should be able to
 - Create account
 - Login/Logout
@@ -53,14 +56,14 @@ return a book with corresponding id
 if book does not exist, it returns:
 
 ``` json
-{error: `[“Book not found”]`}
+{"error": `["Book not found"]`}
 ```
 POST /books
 creates a new book and returns the book created as JSON
 
 if  wrong parameters are password, it returns:
 ``` json
-{“errors”: [“Invalid errors”]}
+{"errors": ["Invalid errors"]}
 
 ```
 PATCH /books/:id
@@ -68,13 +71,13 @@ updates and returns a book with corresponding id
 
 if book does not exist, it returns:
 
-{error: “Book not found”}
+{"error": "Book not found"}
 DELETE /books/:id
 deletes a book with corresponding id
 
 if book does not exist, it returns:
 ``` json
-{error: “Book not found”}
+{"error": "Book not found"}
 ```
 
 
@@ -88,7 +91,7 @@ it also creates a new session for the user
 
 if  wrong parameters are password, it returns:
 ``` json
-{“errors”: [“Invalid errors”]}
+{"errors": ["Invalid errors"]}
 ```
 POST /me
 checks if a user is logged in and returns the book created as JSON if so
@@ -96,14 +99,14 @@ checks if a user is logged in and returns the book created as JSON if so
 if  user not logged in, it returns:
 
 ``` json
-{“errors”:  [“unauthorized”]}
+{"errors":  ["unauthorized"]}
 ```
 PATCH /users/:id
 updates and returns a user with corresponding id
 
 if book does not exist, it returns:
 ``` json
-{error: “User not found”}
+{"error": "User not found"}
 ```
 DELETE /users/:id
 deletes a user with corresponding id along with all the associated records i.e books and reviews and ratings
@@ -111,7 +114,7 @@ deletes a user with corresponding id along with all the associated records i.e b
 if user does not exist, it returns:
 
 ``` json
-{error: “User not found”}
+{"error": "User not found"}
 ```
 
 
@@ -126,22 +129,31 @@ creates a new exchange and returns the exchange information  as JSON
 
 if  wrong parameters are password, it returns:
 ``` json
-{“errors”: [“Invalid errors”]}
+{"errors": ["Invalid errors"]}
 ```
 PATCH /book_exchanges/:id
 updates the exchange status and returns a exchange with corresponding id
 
 if book does not exist, it returns:
 ``` json
-{error: “Exchange not found”}
+{"error": "Exchange not found"}
 ```
 DELETE /book_exchanges/:id
 terminates a pending exchange with corresponding id
 
 if user does not exist, it returns:
 ``` json
-{error: “User not found”}
+{"error": "User not found"}
 ```
 
 ## Technologies
+### Front End
+- ReactJS
+- Material UI
+- CSS
+
+
+### Backend
+- Ruby on Rails
+- Postgresql
 

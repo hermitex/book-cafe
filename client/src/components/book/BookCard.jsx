@@ -93,7 +93,7 @@ function BookCard({ book, onDelete }) {
             <Button size="small"> Exchange</Button>
           </NavLink>
 
-          {user && user.id > 0 ? (
+          {user && user.id > 0 && user.id === book.user.id ? (
             <>
               <NavLink
                 to={{ pathname: "/edit" }}
@@ -114,7 +114,7 @@ function BookCard({ book, onDelete }) {
               to={{ pathname: "/book-details" }}
               state={{ book }}
             >
-              <Button size="small">Learn more</Button>
+              <Button size="small">Details</Button>
             </NavLink>
           )}
         </CardActions>

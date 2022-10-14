@@ -9,7 +9,7 @@ function BookExchange({ loggedUser }) {
   const [bookToReceive, setbookToReceive] = useState({});
   const [details, setExchangeDetails] = useState({});
   const [success, setSuccess] = useState(null);
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
   const [exchangeData, setexchangeData] = useState({
@@ -109,6 +109,7 @@ function BookExchange({ loggedUser }) {
             flexDirection: "row",
             padding: "2rem 5rem",
             alignItems: "center",
+            gap: "5rem",
           }}
         >
           <div className="left">
