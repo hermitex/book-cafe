@@ -17,13 +17,14 @@ class BookExchangesController < ApplicationController
   def create
     if is_process_exchange_success?
       @book_exchange = BookExchange.new(book_exchange_params)
+      # byebug
       if @book_exchange.save!
         render json: {
-          "book_to_receive": book_to_receive,
-          "book_to_send": book_to_send,
-          "receiver": receiver,
-          "sender": sender, except: [:created_at, :updated_at]
-        }, status: :created, location: @book_exchange
+          "book_to_receive": Book.find_by(id: params[:book_received_id]),
+          "book_to_send": Book.find_by(id: params[:book_sent_id]),
+          "receiver": User.find_by(id: params[:receiver_id]),
+          "sender":  User.find_by(id: params[:sender_id])
+        }, status: :created
       else
         render json: @book_exchange.errors, status: :unprocessable_entity
       end

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BookDetails from "./components/book/BookDetails";
+import BookExchange from "./components/book/BookExchange";
 import MyBookList from "./components/book/MyBookList";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
@@ -56,6 +57,11 @@ function App() {
           <Route
             path="/my-books"
             element={<MyBookList />}
+          />
+
+          <Route
+            path="/exchange"
+            element={<BookExchange loggedUser={user} />}
           />
         </Routes>
       </Router>

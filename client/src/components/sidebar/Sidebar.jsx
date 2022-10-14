@@ -68,7 +68,7 @@ function Sidebar({ user, logout }) {
                   <NavLink to="/home">Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">Exchanges</NavLink>
+                  <NavLink to={{ pathname: "/exchanges" }}>Exchanges</NavLink>
                 </li>
                 <li>
                   <NavLink
